@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readmissions by Surgery Type</title>
+    <style>
+        /* Resetting default margins and paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .chart-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .chart-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .pie-chart {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .pie-chart:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .info {
+            font-size: 18px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        strong {
+            color: #1a73e8; /* Google blue color */
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container">
+        <div class="chart-title">Distribution of Readmissions by Surgery Type</div>
+        <img id="pieChart" src="data:image/png;base64,{{ surgery_pie_chart }}" class="pie-chart" alt="Pie Chart">
+        <div class="info">
+            Surgery type with the highest readmission count: <strong id="highestReadmission">{{ highest_readmission_type }}</strong>
+        </div>
+    </div>
+
+    <script>
+        // Interactive functionality
+        const pieChart = document.getElementById('pieChart');
+        const highestReadmission = document.getElementById('highestReadmission');
+
+        // Example: Change data on click
+        pieChart.addEventListener('click', function() {
+            // Simulate data update
+            const newData = 'data:image/png;base64,newImageDataHere';
+            pieChart.src = newData;
+
+            // Update highest readmission type
+            highestReadmission.textContent = 'New Surgery Type';
+        });
+    </script>
+</body>
+</html>
